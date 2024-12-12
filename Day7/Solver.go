@@ -84,8 +84,17 @@ func main() {
 func calculate(x int, y int, operator string) int {
 	if operator == "*" {
 		return x * y
-	} else {
+	} else if operator == "+" {
 		return x + y
+	} else {
+		// fmt.Println(x, y)
+		comb := strconv.Itoa(x) + strconv.Itoa(y)
+		// println(comb)
+		number, err := strconv.Atoi(comb)
+		if err != nil {
+			fmt.Print(err)
+		}
+		return number
 	}
 }
 
@@ -99,4 +108,5 @@ func generateOperations(operations *[]string, operation string, length int) {
 
 	generateOperations(operations, operation+"+", length)
 	generateOperations(operations, operation+"*", length)
+	generateOperations(operations, operation+"|", length)
 }
